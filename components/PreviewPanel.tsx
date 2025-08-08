@@ -29,7 +29,7 @@ export default function PreviewPanel({
     >
       <div className="flex items-center gap-2 p-2 sm:p-3 border-b border-blue-200/60 dark:border-gray-600/60 bg-blue-50/50 dark:bg-gray-700/50">
         <Eye className="w-4 h-4 text-gray-600 dark:text-gray-300" />
-        <span className="font-medium text-sm text-gray-700 dark:text-gray-200">
+        <span className="font-medium text-sm md:text-xs text-gray-700 dark:text-gray-200">
           Live Preview
         </span>
       </div>

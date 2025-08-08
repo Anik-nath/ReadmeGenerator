@@ -41,7 +41,7 @@ const SidebarContent = ({
           <Button
             variant="outline"
             size="icon"
-            className="w-8 h-8 bg-transparent border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer"
+            className="w-7 h-7 bg-transparent border-gray-300 dark:border-gray-600 hover:bg-blue-50 dark:hover:bg-gray-700 cursor-pointer"
             title="Create custom section"
           >
             <Settings className="w-3 h-3" />
@@ -90,7 +90,7 @@ const SidebarContent = ({
           <Button
             key={key}
             size="sm"
-            className="w-full bg-white !pl-0 border-b last:border-0 justify-start text-left h-auto py-2 sm:py-3 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-none cursor-pointer"
+            className="w-full bg-white dark:bg-transparent !pl-0 border-b last:border-0 justify-start text-left h-auto py-2 sm:py-3 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-none cursor-pointer"
             onClick={() => addSection(key)}
           >
             <Plus className="w-3 h-3 mr-1 flex-shrink-0 text-blue-600 dark:text-blue-400" />

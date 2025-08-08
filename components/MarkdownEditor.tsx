@@ -279,7 +279,7 @@ export default function MarkdownEditor({
         {/* Header */}
         <div className="flex items-center gap-2 p-2 sm:p-3 border-b border-blue-200/60 dark:border-gray-600/60 bg-[#1e1e1e] text-white">
           <Code className="w-4 h-4 text-blue-400" />
-          <span className="font-medium text-sm text-gray-200">README.md</span>
+          <span className="font-medium text-sm md:text-xs text-gray-200">README.md</span>
           <div className="ml-auto flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-green-500"></div>
             <span className="text-xs text-gray-400">Markdown</span>
