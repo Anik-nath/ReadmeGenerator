@@ -115,7 +115,7 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
           },
           th({ children }) {
             return (
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-600 border-r border-gray-200 dark:border-gray-600 last:border-r-0 bg-gray-50 dark:bg-gray-700">
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 border-b  border-r border-gray-200 dark:border-gray-600 last:border-r-0 bg-gray-50 dark:bg-gray-700">
                 {children}
               </th>
             );
@@ -128,7 +128,7 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
 
             if (isEndpoint) {
               return (
-                <td className="px-0 py-0 border-b border-gray-200 dark:border-gray-600 border-r border-gray-200 dark:border-gray-600 last:border-r-0">
+                <td className="px-0 py-0 border-b border-r border-gray-200 dark:border-gray-600 last:border-r-0">
                   <div className="bg-gray-800 dark:bg-gray-700 text-white px-4 py-3 font-mono text-sm">
                     {children}
                   </div>
@@ -137,7 +137,7 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
             }
 
             return (
-              <td className="px-4 py-1 text-sm text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-600 border-r border-gray-200 dark:border-gray-600 last:border-r-0 whitespace-nowrap">
+              <td className="px-4 py-1 text-sm text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-600 border-r last:border-r-0 whitespace-nowrap">
                 {children}
               </td>
             );
