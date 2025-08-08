@@ -32,17 +32,13 @@ interface EditorPanelProps {
 }
 
 export default function EditorPanel({
-  markdownContent,
-  setMarkdownContent,
   isPreviewExpanded,
   setIsPreviewExpanded,
   isSidebarCollapsed,
   setIsSidebarCollapsed,
-  editorWidth,
   setEditorWidth,
   isResizing,
   setIsResizing,
-  textareaRef,
   containerRef,
   children,
 }: EditorPanelProps) {
