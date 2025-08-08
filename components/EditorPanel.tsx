@@ -157,19 +157,27 @@ export default function EditorPanel({
           isPreviewExpanded ? "grid grid-cols-1" : "flex flex-col lg:flex-row"
         } gap-0 relative max-h-[calc(100vh-160px)]`}
       >
-        {children}
+        {/* Left - Editor */}
+        {children && Array.isArray(children) ? children[0] : children}
 
-        {/* Resize Handle - Only show on desktop */}
+        {/* Resize Handle */}
         {!isPreviewExpanded && (
           <div
-            className="hidden lg:block w-1 bg-blue-200 dark:bg-gray-600 hover:bg-blue-300 dark:hover:bg-gray-500 cursor-col-resize flex items-center justify-center group transition-colors relative"
+            className="hidden lg:flex w-1 bg-blue-200 dark:bg-gray-600 hover:bg-blue-300 
+                 dark:hover:bg-gray-500 cursor-col-resize items-center justify-center 
+                 group transition-colors relative"
             onMouseDown={handleMouseDown}
+            style={{ minHeight: "100%" }} // ensures it spans the full height
           >
-            <div className="absolute inset-y-0 -left-1 -right-1 flex items-center justify-center">
-              <GripVertical className="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
-            </div>
+            <GripVertical
+              className="w-4 h-4 text-gray-400 group-hover:text-gray-600 
+                               dark:group-hover:text-gray-300 transition-colors"
+            />
           </div>
         )}
+
+        {/* Right - Preview */}
+        {children && Array.isArray(children) ? children[1] : null}
       </div>
     </Card>
   );
