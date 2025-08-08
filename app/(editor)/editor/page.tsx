@@ -86,9 +86,9 @@ export default function ReadmeGenerator() {
       />
 
       {/* Main Content */}
-      <div className="container mx-auto px-3 sm:px-0 py-3 sm:py-8">
+      <div className="container mx-auto px-3 sm:px-0 py-3 sm:py-4">
         <div
-          className={`grid gap-3 sm:gap-6 h-[calc(100vh-100px)] sm:h-[calc(100vh-140px)] ${getGridCols()}`}
+          className={`grid gap-3 sm:gap-4 h-[calc(100vh-100px)] sm:h-[calc(100vh-110px)] ${getGridCols()}`}
         >
           {/* Desktop Sections Sidebar */}
           <DesktopSidebar
