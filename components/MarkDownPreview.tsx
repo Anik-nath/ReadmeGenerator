@@ -1,4 +1,5 @@
 //@ts-nocheck
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkEmoji from "remark-emoji";
@@ -56,7 +57,7 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
             const language = match ? match[1] : "";
 
             return !inline ? (
-              <div className="relative my-6 max-w-full">
+              <div className="relative my-auto max-w-full">
                 {language && (
                   <div className="absolute top-3 right-3 text-xs font-mono text-gray-400 bg-gray-800 px-2 py-1 rounded z-10">
                     {language}
@@ -85,45 +86,58 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
             );
           },
 
-          // Enhanced table styling
+          // Clean table styling matching your reference image with special endpoint handling
           table({ children }) {
             return (
-              <div className="overflow-x-auto my-6 rounded-lg border border-gray-200 dark:border-gray-600">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                  {children}
-                </table>
+              <div className="overflow-x-auto my-6 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                <table className="min-w-full border-collapse">{children}</table>
               </div>
             );
           },
           thead({ children }) {
             return (
-              <thead className="bg-gray-50 dark:bg-gray-800">{children}</thead>
+              <thead className="bg-gray-50 dark:bg-gray-700">{children}</thead>
             );
           },
           tbody({ children }) {
             return (
-              <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
                 {children}
               </tbody>
             );
           },
           tr({ children }) {
             return (
-              <tr className="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-150">
+              <tr className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150">
                 {children}
               </tr>
             );
           },
           th({ children }) {
             return (
-              <th className="px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider border-r border-gray-200 dark:border-gray-600 last:border-r-0">
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-600 border-r border-gray-200 dark:border-gray-600 last:border-r-0 bg-gray-50 dark:bg-gray-700">
                 {children}
               </th>
             );
           },
           td({ children }) {
+            // Check if this cell contains an API endpoint (starts with /)
+            const content = String(children);
+            const isEndpoint =
+              content.startsWith("/") || content.startsWith("`/");
+
+            if (isEndpoint) {
+              return (
+                <td className="px-0 py-0 border-b border-gray-200 dark:border-gray-600 border-r border-gray-200 dark:border-gray-600 last:border-r-0">
+                  <div className="bg-gray-800 dark:bg-gray-700 text-white px-4 py-3 font-mono text-sm">
+                    {children}
+                  </div>
+                </td>
+              );
+            }
+
             return (
-              <td className="px-4 py-3 text-sm text-gray-700 dark:text-gray-300 border-r border-gray-200 dark:border-gray-600 last:border-r-0">
+              <td className="px-4 py-1 text-sm text-gray-700 dark:text-gray-300 border-b border-gray-200 dark:border-gray-600 border-r border-gray-200 dark:border-gray-600 last:border-r-0 whitespace-nowrap">
                 {children}
               </td>
             );
@@ -173,18 +187,46 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
             );
           },
 
-          // Enhanced images
-          img({ src, alt }) {
+          // Enhanced images with special handling for badges and version images
+          img({ src, alt, title }) {
+            // Check if it's a version badge or shield
+            const isVersionBadge =
+              src?.includes("shields.io") ||
+              src?.includes("badge") ||
+              src?.includes("img.shields") ||
+              alt?.toLowerCase().includes("badge") ||
+              alt?.toLowerCase().includes("version") ||
+              title?.toLowerCase().includes("badge") ||
+              alt?.toLowerCase().includes("oas") ||
+              alt?.toLowerCase().includes("oas_version");
+
+            // Version showing images with your preferred styling
+            if (isVersionBadge) {
+              return (
+                <div className="my-6 text-left">
+                  <img
+                    src={src || "/placeholder.svg"}
+                    alt={alt || "Image"}
+                    title={title}
+                    className="max-w-full h-auto rounded border border-gray-200 dark:border-gray-600 shadow-md inline-block"
+                    loading="lazy"
+                  />
+                </div>
+              );
+            }
+
+            // Regular images with different styling
             return (
-              <div className="my-6 text-center">
+              <div className="my-8 text-center">
                 <img
                   src={src || "/placeholder.svg"}
                   alt={alt || "Image"}
-                  className="max-w-full h-auto rounded-lg border border-gray-200 dark:border-gray-600 shadow-md inline-block"
+                  title={title}
+                  className="max-w-full h-auto rounded-xl border-2 border-gray-300 dark:border-gray-500 shadow-lg inline-block transition-transform hover:scale-105"
                   loading="lazy"
                 />
                 {alt && (
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 italic">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-3 italic font-medium">
                     {alt}
                   </p>
                 )}
@@ -192,22 +234,40 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
             );
           },
 
-          // Enhanced links
+          // Enhanced links with better badge and version handling
           a({ href, children }) {
             // Check if it's an internal link (starts with #)
             const isInternal = href?.startsWith("#");
-            // Check if it's an image badge
-            const isImageBadge =
-              typeof children === "object" && children?.type === "img";
+
+            // Check if it's an image badge or contains an image
+            const hasImage = React.Children.toArray(children).some(
+              (child) =>
+                child && typeof child === "object" && child.type === "img"
+            );
+
+            // Check if it's a version or badge link
+            const isBadgeLink =
+              href?.includes("shields.io") ||
+              href?.includes("badge") ||
+              hasImage;
+
+            if (isBadgeLink || hasImage) {
+              return (
+                <a
+                  href={href}
+                  className="inline-block hover:opacity-80 transition-opacity duration-200 mx-1"
+                  target={isInternal ? "_self" : "_blank"}
+                  rel={isInternal ? "" : "noopener noreferrer"}
+                >
+                  {children}
+                </a>
+              );
+            }
 
             return (
               <a
                 href={href}
-                className={`${
-                  isImageBadge
-                    ? "inline-block"
-                    : "text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline font-medium transition-colors duration-150"
-                }`}
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline font-medium transition-colors duration-150"
                 target={isInternal ? "_self" : "_blank"}
                 rel={isInternal ? "" : "noopener noreferrer"}
               >
@@ -281,7 +341,7 @@ const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
 
             return (
               <pre
-                className="my-4 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto border border-gray-200 dark:border-gray-600"
+                className="my-4 bg-gray-50 dark:bg-gray-800 p-2 overflow-x-auto border border-gray-200 dark:border-gray-600"
                 {...props}
               >
                 {children}
