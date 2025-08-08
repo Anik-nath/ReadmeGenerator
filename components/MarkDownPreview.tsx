@@ -8,7 +8,7 @@ import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 const MarkDownPreview = ({ markdownContent }: { markdownContent: any }) => {
   return (
-    <div className="markdown-content max-w-none">
+    <div className="markdown-content max-w-fit ">
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkEmoji]}
         components={{

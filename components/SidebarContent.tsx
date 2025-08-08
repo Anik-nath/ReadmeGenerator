@@ -30,7 +30,7 @@ const SidebarContent = ({
 }: any) => (
   <div className="space-y-4">
     <div className="flex items-center justify-between">
-      <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+      <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm md:text-xs">
         Add Sections
       </h3>
       <Dialog
@@ -81,20 +81,19 @@ const SidebarContent = ({
         </DialogContent>
       </Dialog>
     </div>
-    <p className="text-xs text-blue-600 dark:text-blue-400 mb-4">
+    <p className="text-xs md:text-[11px] text-blue-600 dark:text-blue-400 mb-4">
       Click any section to insert it at your cursor position
     </p>
     <ScrollArea className="h-[calc(100vh-200px)] sm:h-[calc(100vh-300px)]">
-      <div className="space-y-1">
+      <div className="space-y-0.5 ">
         {Object.entries(defaultSectionTemplates).map(([key, template]) => (
           <Button
             key={key}
-            variant="ghost"
             size="sm"
-            className="w-full justify-start text-left h-auto p-2 sm:p-3 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg cursor-pointer"
+            className="w-full bg-white !pl-0 border-b last:border-0 justify-start text-left h-auto py-2 sm:py-3 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-none cursor-pointer"
             onClick={() => addSection(key)}
           >
-            <Plus className="w-3 h-3 mr-2 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+            <Plus className="w-3 h-3 mr-1 flex-shrink-0 text-blue-600 dark:text-blue-400" />
             <span className="text-xs font-medium text-gray-700 dark:text-gray-300">
               {template.title}
             </span>

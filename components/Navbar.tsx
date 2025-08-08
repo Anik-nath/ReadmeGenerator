@@ -124,7 +124,7 @@ const Navbar = ({
   ];
   return (
     <div className="border-b border-gray-100 dark:border-gray-600/60 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-800/70 sticky top-0 z-50 ">
-      <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+      <div className="container mx-auto px-3 sm:px-0 py-3 sm:py-4 flex items-center justify-between">
         <Link href="/">
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="w-7 h-7 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg">

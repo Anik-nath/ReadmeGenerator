@@ -95,19 +95,19 @@ export default function EditorPanel({
           : isSidebarCollapsed
           ? "xl:col-span-1"
           : "xl:col-span-4"
-      } flex flex-col bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-blue-200/60 dark:border-gray-600/60 shadow-xl`}
+      } flex flex-col bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-blue-200/60 dark:border-gray-600/60 shadow-xl py-0`}
     >
-      <div className="flex items-center justify-between p-3 sm:p-4 border-b border-blue-200/60 dark:border-gray-600/60">
+      <div className="flex items-center justify-between p-3 sm:py-2 sm:p-4 border-b border-blue-200/60 dark:border-gray-600/60">
         <div className="flex items-center gap-2">
           <Code className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-          <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
-            README Editor
+          <span className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-sm">
+            Editor
           </span>
         </div>
         <div className="flex items-center gap-1 sm:gap-2">
           <Badge
             variant="secondary"
-            className="gap-1 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-xs"
+            className="gap-1 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-xs py-1.5 rounded-sm"
           >
             <Sparkles className="w-3 h-3" />
             <span className="hidden sm:inline">Live Preview</span>

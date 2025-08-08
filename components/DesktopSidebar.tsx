@@ -43,7 +43,7 @@ export default function DesktopSidebar({
   }
 
   return (
-    <Card className="hidden xl:block xl:col-span-1 p-4 sm:p-6 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-blue-200/60 dark:border-gray-600/60 shadow-xl">
+    <Card className="hidden xl:block xl:col-span-1 py-4 sm:py-2.5 px-4 sm:px-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-blue-200/60 dark:border-gray-600/60 shadow-xl">
       <SidebarContent
         isCustomSectionDialogOpen={isCustomSectionDialogOpen}
         setIsCustomSectionDialogOpen={setIsCustomSectionDialogOpen}

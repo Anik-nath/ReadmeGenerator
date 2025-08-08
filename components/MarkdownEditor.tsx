@@ -2,7 +2,6 @@
 
 import type React from "react";
 import { useEffect, useState, useCallback, useRef } from "react";
-import { Textarea } from "@/components/ui/textarea";
 import { Code } from "lucide-react";
 
 interface MarkdownEditorProps {
@@ -289,7 +288,7 @@ export default function MarkdownEditor({
 
         {/* Editor Area */}
         <div
-          className="flex-1 relative bg-[#1e1e1e] overflow-hidden"
+          className="flex-1 rounded-bl-xl relative bg-[#1e1e1e] overflow-hidden"
           ref={containerRef}
         >
           {/* Line Numbers */}
@@ -332,7 +331,7 @@ export default function MarkdownEditor({
           </div>
 
           {/* Status Bar */}
-          <div className="absolute bottom-0 left-0 right-0 h-6 bg-[#007acc] text-white text-xs flex items-center px-3 gap-4 z-30">
+          <div className="absolute rounded-bl-xl bottom-0 left-0 right-0 h-6 bg-[#007acc] text-white text-xs flex items-center px-3 gap-4 z-30">
             <span>
               Ln{" "}
               {

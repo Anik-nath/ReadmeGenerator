@@ -65,7 +65,7 @@ export default function ReadmeGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen">
       {/* Header */}
       <Navbar
         markdownContent={markdownContent}
@@ -86,7 +86,7 @@ export default function ReadmeGenerator() {
       />
 
       {/* Main Content */}
-      <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-8">
+      <div className="container mx-auto px-3 sm:px-0 py-3 sm:py-8">
         <div
           className={`grid gap-3 sm:gap-6 h-[calc(100vh-100px)] sm:h-[calc(100vh-140px)] ${getGridCols()}`}
         >
